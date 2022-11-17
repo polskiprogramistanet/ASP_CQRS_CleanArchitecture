@@ -1,0 +1,51 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32901.82
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{AE570B17-379A-43A5-BD12-701A26681A87}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{36FC45C4-E805-44A6-81E2-3044DFA0A5E3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{7FB53EE2-F3DA-4372-AC9C-F5AA1C9D0B17}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{9AE03041-4684-468C-BDBA-B3D74088A480}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{178F49D4-1DC8-4EA7-9E1F-5F31FF164F29}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{3BA17E3A-8B29-4C0C-B86D-E2286E0E1AA8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASP_CQRS.Domain", "..\ASP_CQRS.Domain\ASP_CQRS.Domain.csproj", "{69B507E8-5DCC-44A4-9097-103F97F6AFBF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASP_CQRS.Application", "..\ASP_CQRS.Application\ASP_CQRS.Application.csproj", "{D9638B2A-8D94-4913-BFAD-E444E0DAC2CB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{69B507E8-5DCC-44A4-9097-103F97F6AFBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69B507E8-5DCC-44A4-9097-103F97F6AFBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69B507E8-5DCC-44A4-9097-103F97F6AFBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69B507E8-5DCC-44A4-9097-103F97F6AFBF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9638B2A-8D94-4913-BFAD-E444E0DAC2CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9638B2A-8D94-4913-BFAD-E444E0DAC2CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9638B2A-8D94-4913-BFAD-E444E0DAC2CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9638B2A-8D94-4913-BFAD-E444E0DAC2CB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{36FC45C4-E805-44A6-81E2-3044DFA0A5E3} = {AE570B17-379A-43A5-BD12-701A26681A87}
+		{7FB53EE2-F3DA-4372-AC9C-F5AA1C9D0B17} = {AE570B17-379A-43A5-BD12-701A26681A87}
+		{9AE03041-4684-468C-BDBA-B3D74088A480} = {AE570B17-379A-43A5-BD12-701A26681A87}
+		{178F49D4-1DC8-4EA7-9E1F-5F31FF164F29} = {AE570B17-379A-43A5-BD12-701A26681A87}
+		{69B507E8-5DCC-44A4-9097-103F97F6AFBF} = {7FB53EE2-F3DA-4372-AC9C-F5AA1C9D0B17}
+		{D9638B2A-8D94-4913-BFAD-E444E0DAC2CB} = {7FB53EE2-F3DA-4372-AC9C-F5AA1C9D0B17}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C6E4D8F5-71C0-4A8B-B71C-198C7490AC6A}
+	EndGlobalSection
+EndGlobal
