@@ -13,11 +13,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{178F49D4-1DC8-4EA7-9E1F-5F31FF164F29}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{3BA17E3A-8B29-4C0C-B86D-E2286E0E1AA8}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASP_CQRS.Domain", "..\ASP_CQRS.Domain\ASP_CQRS.Domain.csproj", "{69B507E8-5DCC-44A4-9097-103F97F6AFBF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASP_CQRS.Domain", "..\ASP_CQRS.Domain\ASP_CQRS.Domain.csproj", "{69B507E8-5DCC-44A4-9097-103F97F6AFBF}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASP_CQRS.Application", "..\ASP_CQRS.Application\ASP_CQRS.Application.csproj", "{D9638B2A-8D94-4913-BFAD-E444E0DAC2CB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Asp_CQRS_CleanArchitecture.Application.UnitTest", "Asp_CQRS_CleanArchitecture.Application.UnitTest\Asp_CQRS_CleanArchitecture.Application.UnitTest.csproj", "{8496EE56-19C4-48C1-8464-32CD65C35847}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +33,10 @@ Global
 		{D9638B2A-8D94-4913-BFAD-E444E0DAC2CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D9638B2A-8D94-4913-BFAD-E444E0DAC2CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D9638B2A-8D94-4913-BFAD-E444E0DAC2CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8496EE56-19C4-48C1-8464-32CD65C35847}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8496EE56-19C4-48C1-8464-32CD65C35847}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8496EE56-19C4-48C1-8464-32CD65C35847}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8496EE56-19C4-48C1-8464-32CD65C35847}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
