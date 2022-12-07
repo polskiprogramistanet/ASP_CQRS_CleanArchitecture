@@ -73,6 +73,54 @@ namespace Asp_CQRS_CleanArchitecture.Application.UnitTest.Mocks
             return mockpostRepository;
 
         }
+        public static Mock<IWebinaryRepository> GetWebinarRepository() 
+        {
+            var webinars = GetWebinars();
+            var mockWebinarRepository = new Mock<IWebinaryRepository>();
+            mockWebinarRepository.Setup(repo => repo.GetAllItems()).ReturnsAsync(webinars);
+
+            mockWebinarRepository.Setup(repo => repo.GetByIdItem(It.IsAny<int>())).ReturnsAsync(
+            (int id) =>
+            {
+                var pos = webinars.FirstOrDefault(c => c.WebinarId == id);
+                return pos;
+            });
+
+            mockWebinarRepository.Setup(repo => repo.AddItem(It.IsAny<Webinar>())).ReturnsAsync(
+            (Webinar webinar) =>
+            {
+                webinars.Add(webinar);
+                return webinar;
+            });
+
+            mockWebinarRepository.Setup(repo => repo.DeleteItem(It.IsAny<Webinar>())).Callback
+                <Webinar>((entity) => webinars.Remove(entity));
+
+            mockWebinarRepository.Setup(repo => repo.UpdateItem(It.IsAny<Webinar>())).Callback
+                <Webinar>((entity) => { webinars.Remove(entity); webinars.Add(entity); });
+
+            mockWebinarRepository.Setup(repo => repo.GetPagedWebinarsForDate
+            (It.IsAny<SearchOptionsWebinarsEnum>(), It.IsAny<int>(), It.IsAny<int>(), It.IsAny<DateTime?>()))
+            .ReturnsAsync((DateTime date, int page, int pageSize) =>
+            {
+                var matches = webinars.Where(x => x.Date.Month == date.Month && x.Date.Year == date.Year)
+                .Skip((page - 1) * pageSize).Take(pageSize).ToList();
+
+                return matches;
+            });
+
+            mockWebinarRepository.Setup(repo => repo.GetTotalCountOfWebinarsForDate
+            (It.IsAny<SearchOptionsWebinarsEnum>(), It.IsAny<DateTime?>()))
+            .ReturnsAsync((DateTime date) =>
+            {
+                var matches = webinars.Count
+                (x => x.Date.Month == date.Month && x.Date.Year == date.Year);
+
+                return matches;
+            });
+
+            return mockWebinarRepository;
+        }
         public static List<Post> GetPosts()
         {
             var cat = GetCategories();
@@ -124,63 +172,15 @@ namespace Asp_CQRS_CleanArchitecture.Application.UnitTest.Mocks
                 Decription = "System stacji paliw Wapro",
                 ImageUrl = "https://stacjapaliw.net/wp-content/uploads/2022/02/screen3-660x371.png",
                 PostId = 5,
-                Rate=6,
-                Category=cat[4],
-                CategoryId=cat[4].CategoryId,
+                Rate = 6,
+                Category = cat[4],
+                CategoryId = cat[4].CategoryId,
                 Title = "Wapro gas station",
                 Url = "https://stacjapaliw.net/dla-wapro/"
             };
             List<Post> p = new List<Post>();
             p.Add(p1); p.Add(p2); p.Add(p3); p.Add(p4);
             return p;
-        }
-        public static Mock<IWebinaryRepository> GetWebinarRepository() 
-        {
-            var webinars = GetWebinars();
-            var mockWebinarRepository = new Mock<IWebinaryRepository>();
-            mockWebinarRepository.Setup(repo => repo.GetAllItems()).ReturnsAsync(webinars);
-
-            mockWebinarRepository.Setup(repo => repo.GetByIdItem(It.IsAny<int>())).ReturnsAsync(
-            (int id) =>
-            {
-                var pos = webinars.FirstOrDefault(c => c.WebinarId == id);
-                return pos;
-            });
-
-            mockWebinarRepository.Setup(repo => repo.AddItem(It.IsAny<Webinar>())).ReturnsAsync(
-            (Webinar webinar) =>
-            {
-                webinars.Add(webinar);
-                return webinar;
-            });
-
-            mockWebinarRepository.Setup(repo => repo.DeleteItem(It.IsAny<Webinar>())).Callback
-                <Webinar>((entity) => webinars.Remove(entity));
-
-            mockWebinarRepository.Setup(repo => repo.UpdateItem(It.IsAny<Webinar>())).Callback
-                <Webinar>((entity) => { webinars.Remove(entity); webinars.Add(entity); });
-
-            mockWebinarRepository.Setup(repo => repo.GetPagedWebinarsForDate
-            (It.IsAny<SearchOptionsWebinarsEnum>(), It.IsAny<int>(), It.IsAny<int>(), It.IsAny<DateTime?>()))
-            .ReturnsAsync((DateTime date, int page, int pageSize) =>
-            {
-                var matches = webinars.Where(x => x.Date.Month == date.Month && x.Date.Year == date.Year)
-                .Skip((page - 1) * pageSize).Take(pageSize).ToList();
-
-                return matches;
-            });
-
-            mockWebinarRepository.Setup(repo => repo.GetTotalCountOfWebinarsForDate
-            (It.IsAny<SearchOptionsWebinarsEnum>(), It.IsAny<DateTime?>()))
-            .ReturnsAsync((DateTime date) =>
-            {
-                var matches = webinars.Count
-                (x => x.Date.Month == date.Month && x.Date.Year == date.Year);
-
-                return matches;
-            });
-
-            return mockWebinarRepository;
         }
         public static List<Webinar> GetWebinars()
         {
