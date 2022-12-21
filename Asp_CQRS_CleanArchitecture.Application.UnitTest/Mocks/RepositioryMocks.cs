@@ -252,7 +252,7 @@ namespace Asp_CQRS_CleanArchitecture.Application.UnitTest.Mocks
                 Title = "Pytania rekrutacyjne czyli dalsza kariera",
                 AlreadyHappend = false,
                 Date = DateTime.Now.AddDays(-90),
-                Description = @"Jak wygląda szukanie pracy jako programista w 2020 roku? Czy jest lepiej, czy jest gorzej?",
+                Description = @"Jak wygląda szukanie pracy jako programista w 2022 roku? Czy jest lepiej, czy jest gorzej?",
                 FacebookEventUrl = "https://www.facebook.com/events/407358067213893/",
                 WebinarId = 4,
                 ImageUrl = "https://cezarywalenciuk.pl/posts/fileswebinars/15_csharpirekordy.jpg",
