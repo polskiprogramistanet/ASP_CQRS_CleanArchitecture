@@ -14,6 +14,7 @@ namespace Asp_CQRS_CleanArchitecture.Application.UnitTest.Mocks
         public static Mock<ICategoryRepository> GetCategoryRepository()
         {
             var categories = GetCategories();
+
             var mockCategoryRepository = new Mock<ICategoryRepository>();
 
             mockCategoryRepository.Setup(repo => repo.GetAllItems()).ReturnsAsync(categories);
@@ -25,6 +26,15 @@ namespace Asp_CQRS_CleanArchitecture.Application.UnitTest.Mocks
                         return cat;
                     }
                 );
+
+            mockCategoryRepository.Setup(repo => repo.AddItem(It.IsAny<Category>())).ReturnsAsync(
+                (Category category) =>
+                    {
+                        categories.Add(category);
+                        return category;
+                    }
+                );
+
             mockCategoryRepository.Setup(repo => repo.DeleteItem(It.IsAny<Category>())).Callback<Category>((entity) => categories.Remove(entity));
 
             mockCategoryRepository.Setup(repo => repo.UpdateItem(It.IsAny<Category>())).Callback<Category>((entity) => {categories.Remove(entity);categories.Add(entity);});
@@ -101,7 +111,7 @@ namespace Asp_CQRS_CleanArchitecture.Application.UnitTest.Mocks
 
             mockWebinarRepository.Setup(repo => repo.GetPagedWebinarsForDate
             (It.IsAny<SearchOptionsWebinarsEnum>(), It.IsAny<int>(), It.IsAny<int>(), It.IsAny<DateTime?>()))
-            .ReturnsAsync((DateTime date, int page, int pageSize) =>
+            .ReturnsAsync((SearchOptionsWebinarsEnum s, int page, int pageSize, DateTime date) =>
             {
                 var matches = webinars.Where(x => x.Date.Month == date.Month && x.Date.Year == date.Year)
                 .Skip((page - 1) * pageSize).Take(pageSize).ToList();
@@ -111,7 +121,7 @@ namespace Asp_CQRS_CleanArchitecture.Application.UnitTest.Mocks
 
             mockWebinarRepository.Setup(repo => repo.GetTotalCountOfWebinarsForDate
             (It.IsAny<SearchOptionsWebinarsEnum>(), It.IsAny<DateTime?>()))
-            .ReturnsAsync((DateTime date) =>
+            .ReturnsAsync((SearchOptionsWebinarsEnum s,DateTime date) =>
             {
                 var matches = webinars.Count
                 (x => x.Date.Month == date.Month && x.Date.Year == date.Year);
@@ -129,7 +139,7 @@ namespace Asp_CQRS_CleanArchitecture.Application.UnitTest.Mocks
             {
                 Author = "Marcin",
                 Date = DateTime.Now.AddMonths(-6),
-                Decription = "Sterownik syacji paliw",
+                Description = "Sterownik stacji paliw",
                 ImageUrl = "https://stacjapaliw.net/wp-content/uploads/2019/05/driver-schema-kopia-660x443.png",
                 PostId = 2,
                 Rate = 4,
@@ -143,7 +153,7 @@ namespace Asp_CQRS_CleanArchitecture.Application.UnitTest.Mocks
             {
                 Author = "Gerwazy",
                 Date = DateTime.Now.AddDays(-23),
-                Decription = "Program stacji paliw Oil System GT",
+                Description = "Program stacji paliw Oil System GT",
                 ImageUrl = "https://stacjapaliw.net/wp-content/uploads/2019/05/oilSmallPanel-kopia-1024x445.png",
                 PostId = 3,
                 Rate = 9,
@@ -156,7 +166,7 @@ namespace Asp_CQRS_CleanArchitecture.Application.UnitTest.Mocks
             {
                 Author = "Janusz",
                 Date = DateTime.Now.AddDays(-34),
-                Decription = "System lojalnościowy, karty stałego klienta",
+                Description = "System lojalnościowy, karty stałego klienta",
                 ImageUrl = "",
                 PostId = 4,
                 Rate = 7,
@@ -169,7 +179,7 @@ namespace Asp_CQRS_CleanArchitecture.Application.UnitTest.Mocks
             {
                 Author = "Stefan",
                 Date = DateTime.Now.AddYears(-2),
-                Decription = "System stacji paliw Wapro",
+                Description = "System stacji paliw Wapro",
                 ImageUrl = "https://stacjapaliw.net/wp-content/uploads/2022/02/screen3-660x371.png",
                 PostId = 5,
                 Rate = 6,

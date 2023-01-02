@@ -36,11 +36,12 @@ namespace Asp_CQRS_CleanArchitecture.Application.UnitTest.Posts.Commands
             var allPostsBeforeCount = (await this.mockPostRepository.Object.GetAllItems()).Count;
             var command = new CreatedPostCommand()
             {
-                Title = "TestTest",
+                Title = "Stefan Papieć",
                 Date = DateTime.Now.AddDays(-14),
                 Rate = 9,
                 Author = "Stefan Papieć"
             };
+
             var response = await handler.Handle(command, CancellationToken.None);
             var allPosts = await this.mockPostRepository.Object.GetAllItems();
 
@@ -106,7 +107,7 @@ namespace Asp_CQRS_CleanArchitecture.Application.UnitTest.Posts.Commands
             response.Success.ShouldBe(false);
             response.ValidationErrors.Count.ShouldBe(1);
             allPosts.Count.ShouldBe(allPostsBeforeCount);
-            response.PostId.ShouldNotBeNull();
+            response.PostId.ShouldBeNull();
         }
     }
 }

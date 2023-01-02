@@ -34,8 +34,11 @@ namespace Asp_CQRS_CleanArchitecture.Application.UnitTest.Categories.Queries
         public async Task GetCategoriesListTest() 
         {
             var handler = new GetCategoriesListQueryHandler(this.mapper, this.mockCategoryRepository.Object);
+
             var result = await handler.Handle(new GetCategoriesListQuery(), CancellationToken.None);
-            result.ShouldNotBeOfType<List<CategoryInListViewModel>>();
+
+            result.ShouldBeOfType<List<CategoryInListViewModel>>();
+
             result.Count.ShouldBe(5);
         }
     }
