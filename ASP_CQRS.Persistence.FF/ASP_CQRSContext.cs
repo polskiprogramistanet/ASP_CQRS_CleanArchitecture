@@ -35,7 +35,6 @@ namespace ASP_CQRS.Persistence.FF
             }
             return base.SaveChangesAsync(cancellationToken);
         }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.
